@@ -40,8 +40,10 @@
 }
 
 .webweb_wp_notes_remover .zzz_app_admin_sidebar {
-	float: right;
+	_float: right;
     margin: 0;
     padding: 0;
     width: 20%;
 }
+
+
