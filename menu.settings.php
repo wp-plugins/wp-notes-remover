@@ -3,7 +3,7 @@ $settings_key = $WebWeb_WP_NotesRemover_obj->get('plugin_settings_key');
 $opts = $WebWeb_WP_NotesRemover_obj->get_options();
 
 ?>
-<div class="WebWeb_WP_NotesRemover">
+<div class="webweb_wp_notes_remover">
     <div class="wrap">
         <div class="main_content">
             <h2>Settings</h2>

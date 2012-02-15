@@ -1,16 +1,12 @@
-=== WP NotesRemover ===
+=== WP Notes Remover ===
 Contributors: lordspace
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7APYDVPBCSY9A
-Tags: wp,wordpress,remove comment notes,remove notes
+Tags: wp,wordpress,remove comment notes,remove notes,WP Notes Remover,WPNotesRemover,WP_Notes_Remover,WP-Notes-Remover
 Requires at least: 2.0.2
 Tested up to: 3.2.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 
-WP NotesRemover plugin removes the information notes below the WordPress comments.
-
-TODO: 
-add css style (need green rectangle)
-qr code for the newsletter signup
+WP NotesRemover plugin removes unnesessary technical information notes (e.g. below the WordPress comments).
 
 == Description ==
 
@@ -35,7 +31,8 @@ Please go to Wordpress Admin &gt; Plugins &gt; Add New Plugin &gt; Search for: D
 
 == Frequently Asked Questions ==
 
-n/a
+= How to use it ? =
+Just activate it and it will do its job.
 
 Run into issues or have questions/suggestions? Send them to help@WebWeb.ca
 
@@ -47,6 +44,9 @@ Run into issues or have questions/suggestions? Send them to help@WebWeb.ca
 n/a
 
 == Changelog ==
+
+= 1.0.1 =
+* Minor fixes
 
 = 1.0.0 =
 * Initial Release

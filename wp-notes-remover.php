@@ -55,7 +55,7 @@ class WebWeb_WP_NotesRemover {
     private $plugin_dir_name = null; // filled in later
     private $plugin_data_dir = null; // plugin data directory. for reports and data storing. filled in later
     private $plugin_name = 'WP NotesRemover'; //
-    private $plugin_id_str = 'notesremover'; //
+    private $plugin_id_str = 'wp_notes_remover'; //
     private $plugin_business_sandbox = false; // sandbox or live ???
     private $plugin_business_email_sandbox = 'seller_1264288169_biz@slavi.biz'; // used for paypal payments
     private $plugin_business_email = 'billing@WebWeb.ca'; // used for paypal payments
@@ -164,6 +164,9 @@ class WebWeb_WP_NotesRemover {
             // Administration menus
             add_action('admin_menu', array($this, 'administration_menu'));
             add_action('admin_init', array($this, 'register_settings'));
+			
+			wp_register_style($this->plugin_dir_name, $this->plugin_url . 'css/main.css', false, 0.1);
+            wp_enqueue_style($this->plugin_dir_name);
         } else {
             if (!is_feed()) {                
                 add_action('wp_head', array($this, 'add_plugin_credits'), 1); // be the first in the header
