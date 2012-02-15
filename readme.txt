@@ -6,7 +6,7 @@ Requires at least: 2.0.2
 Tested up to: 3.2.1
 Stable tag: 1.0.1
 
-WP NotesRemover plugin removes unnesessary technical information notes (e.g. below the WordPress comments).
+WP Notes Remover plugin removes unnesessary technical information notes (e.g. below the WordPress comments).
 
 == Description ==
 
