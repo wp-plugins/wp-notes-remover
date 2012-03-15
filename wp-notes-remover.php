@@ -4,7 +4,7 @@
   Plugin Name: WP Notes Remover
   Plugin URI: http://webweb.ca/site/products/wp-notes-remover/
   Description: WP Notes Remover removes "You May Use These HTML tags and attributes" below the comments. No necessary theme hacks needed.
-  Version: 1.0.1
+  Version: 1.0.2
   Author: Svetoslav Marinov (Slavi)
   Author URI: http://WebWeb.ca
   License: GPL v2
@@ -393,7 +393,7 @@ class WebWeb_WP_NotesRemover {
      * adds some HTML comments in the page so people would know that this plugin powers their site.
      */
     function add_plugin_credits() {
-        echo PHP_EOL . "<style>.form-allowed-tags { display: none; } </style>" . PHP_EOL;
+        echo PHP_EOL . "<style>.form-allowed-tags, .nocomments { display: none; } </style>" . PHP_EOL;
 
         //printf("\n" . '<meta name="generator" content="Powered by ' . $this->plugin_name . ' (' . $this->plugin_home_page . ') " />' . PHP_EOL);
         printf(PHP_EOL . '<!-- ' . PHP_EOL . 'Powered by ' . $this->plugin_name
