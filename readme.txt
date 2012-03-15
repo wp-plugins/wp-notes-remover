@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: wp,wordpress,remove comment notes,remove notes,WP Notes Remover,WPNotesRemover,WP_Notes_Remover,WP-Notes-Remover
 Requires at least: 2.0.2
 Tested up to: 3.2.1
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 
 WP Notes Remover plugin removes unnesessary technical information notes (e.g. below the WordPress comments, comments are closed).
 
