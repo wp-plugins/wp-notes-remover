@@ -170,6 +170,7 @@ class WebWeb_WP_NotesRemover {
         } else {
             if (!is_feed()) {                
                 add_action('wp_head', array($this, 'add_plugin_credits'), 1); // be the first in the header
+                add_action('wp_footer', array($this, 'process'), 999); // be the second to last in the footer                
                 add_action('wp_footer', array($this, 'add_plugin_credits'), 1000); // be the last in the footer                
             }
         }
@@ -390,11 +391,18 @@ class WebWeb_WP_NotesRemover {
     }
 
     /**
+     * adds the CSS tags so the annoying tech stuff are not shown
+     */
+    function process() {
+        echo PHP_EOL . "<!-- {$this->plugin_name} -->
+				<style>.form-allowed-tags, .nocomments, .nocomments2 { display: none !important; } </style>
+			<!-- /{$this->plugin_name} -->" . PHP_EOL;
+	}
+
+    /**
      * adds some HTML comments in the page so people would know that this plugin powers their site.
      */
     function add_plugin_credits() {
-        echo PHP_EOL . "<style>.form-allowed-tags, .nocomments, .nocomments2 { display: none; } </style>" . PHP_EOL;
-
         //printf("\n" . '<meta name="generator" content="Powered by ' . $this->plugin_name . ' (' . $this->plugin_home_page . ') " />' . PHP_EOL);
         printf(PHP_EOL . '<!-- ' . PHP_EOL . 'Powered by ' . $this->plugin_name
                 . ': ' . $this->app_title . PHP_EOL
