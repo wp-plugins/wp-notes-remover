@@ -4,7 +4,7 @@
   Plugin Name: WP Notes Remover
   Plugin URI: http://webweb.ca/site/products/wp-notes-remover/
   Description: WP Notes Remover removes "You May Use These HTML tags and attributes" below the comments. No necessary theme hacks needed.
-  Version: 1.0.3
+  Version: 1.0.4
   Author: Svetoslav Marinov (Slavi)
   Author URI: http://WebWeb.ca
   License: GPL v2
