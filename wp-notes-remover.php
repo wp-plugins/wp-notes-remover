@@ -170,7 +170,7 @@ class WebWeb_WP_NotesRemover {
         } else {
             if (!is_feed()) {                
                 add_action('wp_head', array($this, 'add_plugin_credits'), 1); // be the first in the header
-                add_action('wp_footer', array($this, 'process'), 999); // be the second to last in the footer                
+                add_action('wp_head', array($this, 'process'), 999); // be the second to last in the footer                
                 add_action('wp_footer', array($this, 'add_plugin_credits'), 1000); // be the last in the footer                
             }
         }
