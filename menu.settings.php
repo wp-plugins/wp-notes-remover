@@ -29,6 +29,9 @@ $plugin_file = dirname(__FILE__) . '/wp-notes-remover.php';
                                 <div class="message">
                                     <p><?php echo $WebWeb_WP_NotesRemover_obj->msg("The plugin is active and running.
                                         No additional action is required on your part.", 1); ?>
+
+                                        <br/>
+                                        The following css are targeted and hid: .form-allowed-tags, .nocomments, .nocomments2
                                     </p>
                                 </div>
                             </div> <!-- .inside -->
