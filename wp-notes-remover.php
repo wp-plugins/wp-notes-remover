@@ -157,11 +157,9 @@ class WebWeb_WP_NotesRemover {
             add_action('admin_init', array($this, 'register_settings'));
 			add_action('admin_enqueue_scripts', array( $this, 'enqueue_assets' ), 20 );
         } else {
-            if (!is_feed()) {                
-                add_action('wp_head', array($this, 'add_plugin_credits'), 1); // be the first in the header
-                add_action('wp_head', array($this, 'process'), 999); // be the second to last in the footer                
-                add_action('wp_footer', array($this, 'add_plugin_credits'), 1000); // be the last in the footer                
-            }
+            add_action('wp_head', array($this, 'add_plugin_credits'), 1); // be the first in the header
+            add_action('wp_head', array($this, 'process'), 999); // be the second to last in the footer                
+            add_action('wp_footer', array($this, 'add_plugin_credits'), 1000); // be the last in the footer                
         }
     }
 
@@ -774,5 +772,44 @@ class WebWeb_WP_NotesRemoverUtil {
         $size = number_format($size, 2);
 
         return $size . " $size_suff";
+    }
+}
+
+/**
+ * Orbisius Widget
+ */
+class WebWeb_WP_NotesRemover_widget {
+    /**
+     * Loads news from Club Orbsius Site.
+     * <?php WebWeb_WP_NotesRemover_widget::output_widget(); ?>
+     * <?php WebWeb_WP_NotesRemover_widget::output_widget('author'); ?>
+     */
+    public static function output_widget($obj = '', $return = 0) {
+        $buff = '';
+        ?>
+        <!-- Orbisius JS Widget -->
+            <?php
+                $naked_domain = !empty($_SERVER['DEV_ENV']) ? 'orbclub.com.clients.com' : 'club.orbisius.com';
+
+                if (!empty($_SERVER['DEV_ENV']) && is_ssl()) {
+                    $naked_domain = 'ssl.orbisius.com/club';
+                }
+
+				// obj could be 'author'
+                $obj = empty($obj) ? str_replace('.php', '', basename(__FILE__)) : sanitize_title($obj);
+                $obj_id = 'orb_widget_' . sha1($obj);
+
+                $params = '?' . http_build_query(array('p' => $obj, 't' => $obj_id, 'layout' => 'plugin', ));
+                $buff .= "<div id='$obj_id' class='$obj_id orbisius_ext_content'></div>\n";
+                $buff .= "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://$naked_domain/wpu/widget/$params';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'orbsius-js-$obj_id');</script>";
+            ?>
+            <!-- /Orbisius JS Widget -->
+        <?php
+
+        if ($return) {
+            return $buff;
+        } else {
+            echo $buff;
+        }
     }
 }
