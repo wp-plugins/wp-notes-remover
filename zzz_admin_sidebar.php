@@ -19,7 +19,7 @@
         <br />
         
         <div class="zzz_app_admin_sidebar_more_plugins">
-            To request custom web development work please go to <a href="http://WebWeb.ca/" target="_blank" title="[New window/tab]">http://WebWeb.ca</a>
+            To request custom web development work please go to <a href="http://Orbisius.com/" target="_blank" title="[New window/tab]">http://Orbisius.com</a>
         </div>
 
         <div class="zzz_app_admin_sidebar_more_plugins">

@@ -1,12 +1,11 @@
 <?php
-
 /*
   Plugin Name: WP Notes Remover
-  Plugin URI: http://webweb.ca/site/products/wp-notes-remover/
+  Plugin URI: http://Orbisius.com/site/products/wp-notes-remover/
   Description: WP Notes Remover removes "You May Use These HTML tags and attributes" below the comments. No necessary theme hacks needed.
-  Version: 1.0.4
+  Version: 1.0.5
   Author: Svetoslav Marinov (Slavi)
-  Author URI: http://WebWeb.ca
+  Author URI: http://Orbisius.com
   License: GPL v2
  */
 
@@ -58,14 +57,14 @@ class WebWeb_WP_NotesRemover {
     private $plugin_id_str = 'wp_notes_remover'; //
     private $plugin_business_sandbox = false; // sandbox or live ???
     private $plugin_business_email_sandbox = 'seller_1264288169_biz@slavi.biz'; // used for paypal payments
-    private $plugin_business_email = 'billing@WebWeb.ca'; // used for paypal payments
-    private $plugin_business_ipn = 'http://webweb.ca/wp/hosted/payment/ipn.php'; // used for paypal IPN payments
+    private $plugin_business_email = 'billing@Orbisius.com'; // used for paypal payments
+    private $plugin_business_ipn = 'http://Orbisius.com/wp/hosted/payment/ipn.php'; // used for paypal IPN payments
     //private $plugin_business_status_url = 'http://localhost/wp/hosted/payment/status.php'; // used after paypal TXN to to avoid warning of non-ssl return urls
-    private $plugin_business_status_url = 'https://secure.webweb.ca/webweb.ca/wp/hosted/payment/status.php'; // used after paypal TXN to to avoid warning of non-ssl return urls
-    private $plugin_support_email = 'help@WebWeb.ca'; //
+    private $plugin_business_status_url = 'https://secure.Orbisius.com/Orbisius.com/wp/hosted/payment/status.php'; // used after paypal TXN to to avoid warning of non-ssl return urls
+    private $plugin_support_email = 'help@Orbisius.com'; //
     private $plugin_support_link = 'http://miniads.ca/widgets/contact/profile/wp-notes-remover/?height=200&width=500&description=Please enter your enquiry below.'; //
     private $plugin_admin_url_prefix = null; // filled in later
-    private $plugin_home_page = 'http://webweb.ca/site/products/wp-notes-remover/';
+    private $plugin_home_page = 'http://Orbisius.com/site/products/wp-notes-remover/';
     private $plugin_tinymce_name = 'wwwpdigishop'; // if you change it update the tinymce/editor_plugin.js and reminify the .min.js file.
     private $plugin_cron_hook = __CLASS__;
     private $paypal_url = 'https://www.paypal.com/cgi-bin/webscr';
