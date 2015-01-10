@@ -47,6 +47,8 @@ n/a
 = 1.0.5 =
 * Tested with WP 4.1
 * Changed text point to webweb.ca to Orbisius.com (new company name)
+* Made it compatible with WP 4
+* Refactored some of the code.
 
 = 1.0.2 =
 * Minor fixes

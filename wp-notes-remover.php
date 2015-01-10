@@ -39,12 +39,10 @@ if (empty($_ENV['WebWeb_WP_NotesRemover_TEST'])) {
     add_action('init', array($WebWeb_WP_NotesRemover_obj, 'init'));
 
     register_activation_hook(__FILE__, array($WebWeb_WP_NotesRemover_obj, 'on_activate'));
-    register_deactivation_hook(__FILE__, array($WebWeb_WP_NotesRemover_obj, 'on_deactivate'));
-    register_uninstall_hook(__FILE__, array($WebWeb_WP_NotesRemover_obj, 'on_uninstall'));
+    register_deactivation_hook(__FILE__, array($WebWeb_WP_NotesRemover_obj, 'on_deactivate'));    
 }
 
 class WebWeb_WP_NotesRemover {
-    private $log_enabled = 0;
     private $log_file = null;
     private $permalinks = 0;
     private static $instance = null; // singleton
@@ -93,36 +91,25 @@ class WebWeb_WP_NotesRemover {
     /**
      * handles the singleton
      */
-    function get_instance() {
+    public static function get_instance() {
 		if (is_null(self::$instance)) {
             global $wpdb;
             
 			$cls = __CLASS__;	
 			$inst = new $cls;
 			
-			$site_url = get_settings('siteurl');
+			$site_url = site_url('/');
 			$site_url = rtrim($site_url, '/') . '/'; // e.g. http://domain.com/blog/
 
 			$inst->site_url = $site_url;
 			$inst->plugin_dir_name = basename(dirname(__FILE__)); // e.g. wp-command-center; this can change e.g. a 123 can be appended if such folder exist
 			$inst->plugin_data_dir = dirname(__FILE__) . '/data';
-			$inst->plugin_url = $site_url . 'wp-content/plugins/' . $inst->plugin_dir_name . '/';
+			$inst->plugin_url = plugins_url('/', __FILE__);
 			$inst->plugin_settings_key = $inst->plugin_id_str . '_settings';			
             $inst->plugin_support_link .= '&css_file=' . urlencode(get_bloginfo('stylesheet_url'));
             $inst->plugin_admin_url_prefix = $site_url . 'wp-admin/admin.php?page=' . $inst->plugin_dir_name;
 		
             $opts = $inst->get_options();
-
-            if (!$inst->log_enabled && !empty($opts['logging_enabled'])) {
-                $inst->log_enabled = $opts['logging_enabled'];
-            }
-
-            // the log file be: log.1dd9091e045b9374dfb6b042990d65cc.2012-01-05.log
-			if ($inst->log_enabled) {
-				$inst->log_file = $inst->plugin_data_dir . '/log.'
-                        . md5($site_url . $inst->plugin_dir_name)
-                        . '.' . date('Y-m-d') . '.log';
-			}
 
 			add_action('plugins_loaded', array($inst, 'init'), 100);
             
@@ -153,6 +140,11 @@ class WebWeb_WP_NotesRemover {
         }
     }
     
+    function enqueue_assets() {
+        wp_register_style($this->plugin_dir_name, $this->plugin_url . 'css/main.css', false, 0.1);
+        wp_enqueue_style($this->plugin_dir_name);
+    }
+
     /**
      * handles the init
      */
@@ -163,9 +155,7 @@ class WebWeb_WP_NotesRemover {
             // Administration menus
             add_action('admin_menu', array($this, 'administration_menu'));
             add_action('admin_init', array($this, 'register_settings'));
-			
-			wp_register_style($this->plugin_dir_name, $this->plugin_url . 'css/main.css', false, 0.1);
-            wp_enqueue_style($this->plugin_dir_name);
+			add_action('admin_enqueue_scripts', array( $this, 'enqueue_assets' ), 20 );
         } else {
             if (!is_feed()) {                
                 add_action('wp_head', array($this, 'add_plugin_credits'), 1); // be the first in the header
@@ -217,22 +207,6 @@ class WebWeb_WP_NotesRemover {
 
         // if we've introduced a new default key/value it'll show up.
         $opts = array_merge($this->plugin_default_opts, $opts);
-
-        if (empty($opts['purchase_thanks'])) {
-            $opts['purchase_thanks'] = $this->plugin_default_opts['purchase_thanks'];
-        }
-        
-        if (empty($opts['purchase_error'])) {
-            $opts['purchase_error'] = $this->plugin_default_opts['purchase_error'];
-        }
-
-        if (empty($opts['purchase_subject'])) {
-            $opts['purchase_subject'] = $this->plugin_default_opts['purchase_subject'];
-        }
-
-        if (empty($opts['purchase_content'])) {
-            $opts['purchase_content'] = $this->plugin_default_opts['purchase_content'];
-        }
 
         return $opts;
     }
